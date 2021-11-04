@@ -1,0 +1,13 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: green;
+    --secondary: lightgrey;
+    font-size: 62.5%;
+}
+
+body {
+    background-color: var(--secondary);
+}
