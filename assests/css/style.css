@@ -4,10 +4,56 @@
 
 :root {
     --primary: green;
-    --secondary: lightgrey;
-    font-size: 62.5%;
+    --secondary: lightgreen;
 }
 
 body {
-    background-color: var(--secondary);
+    background-color: white;
+}
+
+.leftTop {
+    width: 50%;
+    float: left;
+}
+
+.rightTop {
+    width: 50%;
+    float: right;
+}
+
+.highScore {
+    font-size: 15px;
+    margin-left: 25px;
+    font-weight: lighter;
+    color: var(--secondary);
+}
+
+.timer {
+    font-size: 15px;
+    font-weight: lighter;
+    margin-right: 25px;
+    float: right;
+}
+
+.quizSetup {
+    text-align: center;
+}
+
+h1 {
+    font-size: 30px;
+}
+
+p {
+    font-size: 20px;
+    margin-left: 400px;
+    margin-right: 400px;
+}
+
+.button {
+    background-color: var(--primary);
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    width: 90px;
 }
