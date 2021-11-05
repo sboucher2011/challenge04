@@ -39,14 +39,20 @@ body {
     text-align: center;
 }
 
+#quizContent {
+    background-color: rebeccapurple;
+    margin-left: 30%;
+
+}
+
 h1 {
     font-size: 30px;
 }
 
 p {
     font-size: 20px;
-    margin-left: 400px;
-    margin-right: 400px;
+    margin-left: 30%;
+    margin-right: 30%;
 }
 
 .button {

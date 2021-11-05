@@ -7,6 +7,7 @@ var timerEl = document.querySelector("#timer");
 var headerEl = document.querySelector("#quizTitle");
 var directionsEl = document.querySelector(".directions");
 var quizContentEl = document.querySelector("#quizContent");
+var quizSetupEl = document.querySelector(".quizSetup");
 var timeLeft = 15;
 
 
@@ -53,10 +54,18 @@ function startQuizTimer() {
 //Run Quiz
 function displayQuiz() {
 
+  //remove header
+  headerEl.textContent = "";
+
   //remove button
   startButtonEl.style.display = "none";
   //remove statement
   directionsEl.style.display = "none";
+
+  //Create Quiz Header
+  var headerQuiz = document.createElement("h1");
+  headerQuiz.className = "quizH1";
+  quizContentEl.appendChild(headerQuiz);
 
   //create buttons
   var buttonOne = document.createElement("button");
@@ -79,13 +88,11 @@ function displayQuiz() {
   buttonFour.className = "button";
   quizContentEl.appendChild(buttonFour);
 
-
-
   //Data Property for which button is clicked
 
   for(let i = 0; i < questions.length; i++) {
     //Display Header
-    headerEl.textContent = questions[i][0];
+    headerQuiz.textContent = questions[i][0];
 
     //Update Buttons
     t.textContent = "Testing!"
