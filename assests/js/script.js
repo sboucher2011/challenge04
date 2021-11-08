@@ -14,8 +14,8 @@ var timeLeft = 15;
 
 var questions = [
   //[Question, Option 1, Option 2, Option 3, Option 4, Solution]
-  ["What is the question?", "A", "B", "C", "D", "B"],
-  ["What is the next question?", "A", "B", "C", "D", "A"],
+  ["What is the question?", "A", "B", "C", "D", "#B"],
+  ["What is the next question?", "A", "B", "C", "D", "#A"],
 ];
 
 //---------------------------------------------------------------------
@@ -79,22 +79,26 @@ function displayQuiz() {
   var buttonOne = document.createElement("button");
   buttonOne.textContent = "Initial Name";
   buttonOne.className = "button";
+  buttonOne.id = "A";
 
   bttn1.appendChild(buttonOne);
 
   var buttonTwo = document.createElement("button");
   buttonTwo.textContent = "Initial Name 2";
   buttonTwo.className = "button";
+  buttonTwo.id = "B";
   bttn2.appendChild(buttonTwo);
 
   var buttonThree = document.createElement("button");
   buttonThree.textContent = "Initial Name 2";
   buttonThree.className = "button";
+  buttonThree.id = "C";
   bttn3.appendChild(buttonThree);
 
   var buttonFour = document.createElement("button");
   buttonFour.textContent = "Initial Name 2";
   buttonFour.className = "button";
+  buttonFour.id = "D";
   bttn4.appendChild(buttonFour);
 
   //Add to HTML
@@ -116,21 +120,35 @@ function displayQuiz() {
     //Display Header
     headerQuiz.textContent = questions[i][0];
 
+
     //Update Buttons
-    //t.textContent = "Testing!"
+    buttonOne.textContent = questions[i][1];
+    buttonTwo.textContent = questions[i][2];
+    buttonThree.textContent = questions[i][3];
+    buttonFour.textContent = questions[i][4];
 
-    //if click detetected 
+    body.addEventListener("click", function(event) {
+      var element = event.target;
 
-      //if clicked === questions[i][5]
-        //play good sound
-        //
-      //else 
-        //play wrong song
-        //reduce time
-
+      if (element.matches(questions[i][5])) {
+        console.log("Match!")
+        displayAnswerStatus("Correct!");
+      } else {
+        console.log("NOPE")
+        //displayAnswerStatus("Wrong!");
+      }
+      
+    });
+    
       //switch to next question
-      //display underline
-      //display wrong or correct
+
 
   }
+}
+
+//Display Label After Answer is Selected
+function displayAnswerStatus(answer) {
+  var answerDisplay = document.createElement("h3");
+  answerDisplay.textContent = answer;
+  body.appendChild(answerDisplay);
 }

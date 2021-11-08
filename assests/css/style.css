@@ -66,6 +66,9 @@ p {
     width: 90px;
 }
 
+.button:hover {
+    background-color: var(--secondary);
+}
 ul {
     text-decoration: none;
     margin-left: 26%;
@@ -73,4 +76,12 @@ ul {
 
 li {
     margin-bottom: 5px;
+}
+
+h3 {
+    color: lightgrey;
+    margin-left: 30%;
+    border-top: 2px solid lightgrey;
+    margin-right: 15%;
+    padding-top: 8px;
 }
