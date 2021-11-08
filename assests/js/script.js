@@ -134,10 +134,13 @@ function displayQuiz() {
     var element = event.target;
     var passSound = new Audio("success.mp3");
     var failSound = new Audio("fail.mp3");
+    
     //correct answer
-    if (element.matches(questions[0][5])) {
+    console.log("check " + i)
+    if (element.matches(questions[i][5])) {
       console.log("Match!");
       i++;
+      console.log(i)
       passSound.play();
       displayQuestion();
       displayAnswerStatus("Correct!");
