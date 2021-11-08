@@ -69,6 +69,7 @@ p {
 .button:hover {
     background-color: var(--secondary);
 }
+
 ul {
     text-decoration: none;
     margin-left: 26%;
