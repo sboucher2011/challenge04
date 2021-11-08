@@ -9,7 +9,7 @@ var headerEl = document.querySelector("#quizTitle");
 var directionsEl = document.querySelector(".directions");
 var quizContentEl = document.querySelector("#quizContent");
 var quizSetupEl = document.querySelector(".quizSetup");
-var timeLeft = 60;
+var timeLeft = 100;
 
 //Create Quiz Header
 var headerQuiz = document.createElement("h1");
@@ -135,7 +135,8 @@ function displayQuiz() {
       i++;
       displayQuestion();
       displayAnswerStatus("Correct!");
-          
+    
+    //ensures that the click was on one of the buttons
     } else if (element.matches("#A") || element.matches("#B") || element.matches("#C") || element.matches("#D")) {
       console.log("NOPE");
       i++;
@@ -162,6 +163,14 @@ function displayQuestion() {
     buttonFour.textContent = questions[i][4];
   } else {
     console.log("end!!")
+
+    //clear screen
+    buttonOne.style.display = "none";
+    buttonTwo.style.display = "none";
+    buttonThree.style.display = "none";
+    buttonFour.style.display = "none";
+    answerDisplay.style.display = "none";
+    headerQuiz.style.display = "none";
   }
   
 }
