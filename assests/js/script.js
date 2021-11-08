@@ -132,17 +132,22 @@ function displayQuiz() {
   //check ID of button to see if answer was correct
   body.addEventListener("click", function(event) {
     var element = event.target;
-
+    var passSound = new Audio("success.mp3");
+    var failSound = new Audio("fail.mp3");
+    //correct answer
     if (element.matches(questions[0][5])) {
       console.log("Match!");
       i++;
+      passSound.play();
       displayQuestion();
       displayAnswerStatus("Correct!");
     
+    //wrong answer
     //ensures that the click was on one of the buttons
     } else if (element.matches("#A") || element.matches("#B") || element.matches("#C") || element.matches("#D")) {
       console.log("NOPE");
       i++;
+      failSound.play();
       timeLeft = timeLeft - 10;
       displayQuestion();
       displayAnswerStatus("Wrong!");
