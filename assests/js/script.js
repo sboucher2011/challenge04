@@ -10,6 +10,7 @@ var directionsEl = document.querySelector(".directions");
 var quizContentEl = document.querySelector("#quizContent");
 var quizSetupEl = document.querySelector(".quizSetup");
 var timeLeft = 100;
+var highScore = 0;
 
 //Create Quiz Header
 var headerQuiz = document.createElement("h1");
@@ -93,9 +94,11 @@ function startQuizTimer() {
       if(timeLeft > 0) {
         timeLeft--;
       } else {
+        timerEl.textContent = "Time: 0";
+        highScore = timeLeft;
+        displayHighScoreInput();   
         clearInterval(timeInterval); //stops it from running or else it will never stop
       }
-  
     }, 1000);
 }
 
@@ -143,10 +146,8 @@ function displayQuiz() {
       timeLeft = timeLeft - 10;
       displayQuestion();
       displayAnswerStatus("Wrong!");
-    }
-      
+    } 
   });
-
 }
 
 //Display Question
@@ -162,17 +163,9 @@ function displayQuestion() {
     buttonThree.textContent = questions[i][3];
     buttonFour.textContent = questions[i][4];
   } else {
-    console.log("end!!")
-
-    //clear screen
-    buttonOne.style.display = "none";
-    buttonTwo.style.display = "none";
-    buttonThree.style.display = "none";
-    buttonFour.style.display = "none";
-    answerDisplay.style.display = "none";
-    headerQuiz.style.display = "none";
+    highScore = timeLeft;
+    displayHighScoreInput();    
   }
-  
 }
 
 //Display Label After Answer is Selected
@@ -184,4 +177,17 @@ function displayAnswerStatus(answer) {
     body.appendChild(answerDisplay);
   }
   
+}
+
+//Clear Screen 
+function displayHighScoreInput() {
+  //clear screen
+  buttonOne.style.display = "none";
+  buttonTwo.style.display = "none";
+  buttonThree.style.display = "none";
+  buttonFour.style.display = "none";
+  answerDisplay.style.display = "none";
+  headerQuiz.style.display = "none";
+
+  console.log(highScore);
 }
