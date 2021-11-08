@@ -1,6 +1,7 @@
 //---------------------------------------------------------------------
 // Define Variables
 //---------------------------------------------------------------------
+var body = document.body;
 var startButtonEl = document.querySelector("#startButton");
 var viewHighScoreEl = document.querySelector("#viewHighScore");
 var timerEl = document.querySelector("#timer");
@@ -67,26 +68,47 @@ function displayQuiz() {
   headerQuiz.className = "quizH1";
   quizContentEl.appendChild(headerQuiz);
 
+  //Create Unordered List
+  var listEl = document.createElement("ul"); 
+  var bttn1 = document.createElement("li");
+  var bttn2 = document.createElement("li");
+  var bttn3 = document.createElement("li");
+  var bttn4 = document.createElement("li");
+  
   //create buttons
   var buttonOne = document.createElement("button");
   buttonOne.textContent = "Initial Name";
   buttonOne.className = "button";
-  quizContentEl.appendChild(buttonOne);
+
+  bttn1.appendChild(buttonOne);
 
   var buttonTwo = document.createElement("button");
   buttonTwo.textContent = "Initial Name 2";
   buttonTwo.className = "button";
-  quizContentEl.appendChild(buttonTwo);
+  bttn2.appendChild(buttonTwo);
 
   var buttonThree = document.createElement("button");
   buttonThree.textContent = "Initial Name 2";
   buttonThree.className = "button";
-  quizContentEl.appendChild(buttonThree);
+  bttn3.appendChild(buttonThree);
 
   var buttonFour = document.createElement("button");
   buttonFour.textContent = "Initial Name 2";
   buttonFour.className = "button";
-  quizContentEl.appendChild(buttonFour);
+  bttn4.appendChild(buttonFour);
+
+  //Add to HTML
+  body.appendChild(listEl);
+
+  listEl.appendChild(bttn1);
+  listEl.appendChild(bttn2);
+  listEl.appendChild(bttn3);
+  listEl.appendChild(bttn4);
+
+  bttn1.setAttribute("style", " color:white;");
+  bttn2.setAttribute("style", " color:white;");
+  bttn3.setAttribute("style", " color:white;");
+  bttn4.setAttribute("style", " color:white;");
 
   //Data Property for which button is clicked
 
@@ -95,7 +117,7 @@ function displayQuiz() {
     headerQuiz.textContent = questions[i][0];
 
     //Update Buttons
-    t.textContent = "Testing!"
+    //t.textContent = "Testing!"
 
     //if click detetected 
 

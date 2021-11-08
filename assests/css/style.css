@@ -40,13 +40,15 @@ body {
 }
 
 #quizContent {
-    background-color: rebeccapurple;
     margin-left: 30%;
-
 }
 
 h1 {
     font-size: 30px;
+}
+
+.quizH1 {
+    text-align: left;
 }
 
 p {
@@ -62,4 +64,13 @@ p {
     border: none;
     border-radius: 8px;
     width: 90px;
+}
+
+ul {
+    text-decoration: none;
+    margin-left: 26%;
+}
+
+li {
+    margin-bottom: 5px;
 }
