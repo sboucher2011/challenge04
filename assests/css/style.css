@@ -87,3 +87,41 @@ h3 {
     margin-right: 15%;
     padding-top: 8px;
 }
+
+.inputBox {
+    margin-right: 10px;
+    border-radius: 8px;
+    width: 280px;
+    height: 40px;
+}
+
+#submitButton {
+    height: 40px;
+    width: 80px;
+}
+
+.scoreLabel {
+    margin-left: 0px;
+    margin-top: 0px;
+}
+
+
+.oddRow {
+    background-color: green;
+    height: 40px;
+    padding-right: 400px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.evenRow {
+    background-color: lightgreen;
+    padding-right: 400px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+ul .highScoreTable {
+    text-decoration: none;
+    padding-right: 400px;
+}

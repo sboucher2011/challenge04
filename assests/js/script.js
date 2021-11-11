@@ -9,6 +9,7 @@ var headerEl = document.querySelector("#quizTitle");
 var directionsEl = document.querySelector(".directions");
 var quizContentEl = document.querySelector("#quizContent");
 var quizSetupEl = document.querySelector(".quizSetup");
+var enteredIntialsEl = document.getElementById("#userInitials");
 var timeLeft = 100;
 var highScore = 0;
 
@@ -49,7 +50,38 @@ buttonFour.className = "button";
 buttonFour.id = "D";
 bttn4.appendChild(buttonFour);
 
+var scoreLabel = document.createElement("p");
+scoreLabel.className = "scoreLabel";
+
+var initialsEl = document.createElement("p");
+initialsEl.textContent = "Enter initials:"
+initialsEl.className = "scoreLabel";
+
+var inputBox = document.createElement("input");
+inputBox.className = "inputBox";
+inputBox.id = "userInitials";
+
+var submitHighScore = document.createElement("button");
+submitHighScore.textContent = "Submit";
+submitHighScore.className = "button";
+submitHighScore.id = "submitButton";
+
+var goBackFromHighScore = document.createElement("button");
+goBackFromHighScore.textContent = "Go back";
+goBackFromHighScore.className = "button";
+goBackFromHighScore.id = "submitButton";
+
+var clearHighScoreButton = document.createElement("button");
+clearHighScoreButton.textContent = "Clear high scores";
+clearHighScoreButton.className = "button";
+clearHighScoreButton.id = "submitButton";
+
 var answerDisplay = document.createElement("h3");
+
+var highScores = [];
+
+//High Score Cells
+var highScoreDisplay = document.createElement("h4");
 
 //Question Setup 
 var i = 0;
@@ -62,7 +94,7 @@ var questions = [
   ["Array's can be used to store?", "1. numbers and strings", "2. other arrays", "3. booleans", "4. All of the Above", "#D"],
   ["String values must be enclosed within _____ when being assigned to variables?", "1. commas", "2. curly brackets", "3. quotes", "4. parenthesis", "#C"],
   ["A very useful tool used during development and debugging for printing content to the debugger is:", "1. JavaScript", "2. terminal/bash", "3. for loops", "4. console.log", "#D"],
-  ["The condition in an if/else statement is enclosed with _____", "1. quotes", "2. curly brackets", "3. parenthesis", "4. square brackets", "#B"],
+  ["The condition in an if/else statement is enclosed with _____", "1. quotes", "2. curly brackets", "3. parenthesis", "4. square brackets", "#C"],
   ["Commonly used data types DO Not Include:", "1. strings", "2. booleans", "3. alerts", "4. numbers", "#C"],
 ];
 
@@ -78,9 +110,14 @@ startButtonEl.addEventListener("click", function() {
 
 //View High Score Button
 viewHighScoreEl.addEventListener("click", function() {
-    console.log("view high score");
+    clearHomeScreen();
+    //displayHighScoreTable();
+    displayHighScoreInput();
 })
 
+submitHighScore.addEventListener("click", function() {
+  scoreFormHandler();
+});
 
 //---------------------------------------------------------------------
 // Functions
@@ -105,13 +142,7 @@ function startQuizTimer() {
 //Run Quiz
 function displayQuiz() {
 
-  //remove header
-  headerEl.textContent = "";
-
-  //remove button
-  startButtonEl.style.display = "none";
-  //remove statement
-  directionsEl.style.display = "none";
+  clearHomeScreen();
 
   //Add to HTML
   body.appendChild(listEl);
@@ -135,26 +166,26 @@ function displayQuiz() {
     var passSound = new Audio("success.mp3");
     var failSound = new Audio("fail.mp3");
     
-    //correct answer
-    console.log("check " + i)
-    if (element.matches(questions[i][5])) {
-      console.log("Match!");
-      i++;
-      console.log(i)
-      passSound.play();
-      displayQuestion();
-      displayAnswerStatus("Correct!");
-    
-    //wrong answer
     //ensures that the click was on one of the buttons
-    } else if (element.matches("#A") || element.matches("#B") || element.matches("#C") || element.matches("#D")) {
-      console.log("NOPE");
-      i++;
-      failSound.play();
-      timeLeft = timeLeft - 10;
-      displayQuestion();
-      displayAnswerStatus("Wrong!");
-    } 
+    if (element.matches("#A") || element.matches("#B") || element.matches("#C") || element.matches("#D")) {
+      //correct answer
+      if (element.matches(questions[i][5])) {
+        console.log("Match!");
+        i++;
+        passSound.play();
+        displayQuestion();
+        displayAnswerStatus("Correct!");
+      
+      //wrong answer
+      } else {
+        console.log("NOPE");
+        i++;
+        failSound.play();
+        timeLeft = timeLeft - 10;
+        displayQuestion();
+        displayAnswerStatus("Wrong!");
+      } 
+    }
   });
 }
 
@@ -187,7 +218,7 @@ function displayAnswerStatus(answer) {
   
 }
 
-//Clear Screen 
+//Clear Screen & Display High Score
 function displayHighScoreInput() {
   //clear screen
   buttonOne.style.display = "none";
@@ -195,7 +226,128 @@ function displayHighScoreInput() {
   buttonThree.style.display = "none";
   buttonFour.style.display = "none";
   answerDisplay.style.display = "none";
-  headerQuiz.style.display = "none";
 
-  console.log(highScore);
+  timerEl = "Time: 0";
+
+  headerQuiz.textContent = "All done!";
+  scoreLabel.textContent = "Your final score is " + highScore;
+
+  quizContentEl.appendChild(scoreLabel);
+  quizContentEl.appendChild(initialsEl);
+  quizContentEl.appendChild(inputBox);
+  quizContentEl.appendChild(submitHighScore);
 }
+
+//clear Home Screen
+function clearHomeScreen() {
+   //remove header
+   headerEl.textContent = "";
+
+   //remove button
+   startButtonEl.style.display = "none";
+   //remove statement
+   directionsEl.style.display = "none";
+}
+
+//show high score table
+function displayHighScoreTable() {
+  loadHighScores();
+}
+
+var scoreFormHandler = function (event) {
+
+  var nameInput = document.querySelector("input[class='inputBox']").value;
+
+  // check if inputs are empty (validate)
+  if (!nameInput) {
+    alert("You need to input your name!");
+    return false;
+  }
+
+  // reset form fields for next task to be entered
+  document.querySelector("input[class='inputBox']").value = "";
+
+  //load existing scores
+  loadHighScores();
+
+  var highScoreDataObj = {
+    name: nameInput,
+    score: highScore,
+  };
+  
+  console.log(highScoreDataObj.name);
+  //save high score
+  highScores.push(highScoreDataObj);
+  console.log(highScores)
+  localStorage.setItem("highScores", JSON.stringify(highScores));
+
+  //clear form
+  headerQuiz.textContent = "High Scores"
+
+  scoreLabel.style.display = "none";
+  initialsEl.style.display = "none";
+  inputBox.style.display = "none";
+  submitHighScore.style.display = "none";
+
+  //display high score table
+  //displayHighScoreTable();
+};
+
+//Load all High Scores
+function loadHighScores() {
+  var savedHighScores = localStorage.getItem("highScores");
+  // if there are no tasks, set tasks to an empty array and return out of the function
+  if (!savedHighScores) {
+    return false;
+  }
+
+  // parse into array of objects
+  savedHighScores = JSON.parse(savedHighScores);
+  console.log(savedHighScores);
+
+  // loop through savedHighScores array
+  for (var i = 0; i < savedHighScores.length; i++) {
+    // pass each task object into the `createTaskEl()` function
+
+    if (i === 0) {
+      console.log(savedHighScores[0][0]);
+    }
+    highScores.push(savedHighScores[i]);
+    
+  }
+
+  //Create a list with all the scores
+  var list = document.createElement("ul");
+  list.className = "highScoreTable";
+  var j = 1;
+
+  for (var i in highScores) {
+ 
+    var anchor = document.createElement("a");
+    anchor.innerText = j + ". " + highScores[i];
+
+    var elem = document.createElement("li");
+    elem.appendChild(anchor);
+    list.appendChild(elem);
+
+    if (i % 2) {
+      anchor.className = "evenRow"
+    } else {
+      anchor.className = "oddRow"
+    }
+    j++;
+    body.appendChild(list);
+  }
+ 
+  //add Buttons
+  body.appendChild(goBackFromHighScore);
+  body.appendChild(clearHighScoreButton);
+
+}
+
+//Clear High Scores
+function clearHighScores() {
+  localStorage.clear();
+}
+
+//Go Back
