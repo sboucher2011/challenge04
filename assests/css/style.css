@@ -50,6 +50,7 @@ h1 {
 .quizH1 {
     text-align: left;
     margin-right: 15%;
+    margin-left: -12px;
 }
 
 p {

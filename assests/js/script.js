@@ -221,13 +221,10 @@ function displayQuestion() {
 
 //Display Label After Answer is Selected
 function displayAnswerStatus(answer) {
-
     answerDisplay.textContent = answer;
-
     if (i === 1) {
         body.appendChild(answerDisplay);
     }
-
 }
 
 //Clear Screen & Display High Score
@@ -261,8 +258,7 @@ function clearHomeScreen() {
     directionsEl.style.display = "none";
 }
 
-
-
+//Generate High Score Table
 function loadHighScoreTable() {
     headerQuiz.textContent = "High Scores"
     headerQuiz.style.display = "";
@@ -273,10 +269,7 @@ function loadHighScoreTable() {
     console.log(highScores);
     
     //remove all li from the list
-   // if (highScores.length > 0) {
-
-        while(list.firstChild) list.removeChild(list.firstChild);
-   // }
+    while(list.firstChild) list.removeChild(list.firstChild);
 
     //sort the scores by highest
     highScores.sort((a,b) => b.score - a.score);
