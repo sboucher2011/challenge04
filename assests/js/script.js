@@ -70,15 +70,18 @@ submitHighScore.id = "submitButton";
 
 var goBackFromHighScore = document.createElement("button");
 goBackFromHighScore.textContent = "Go back";
-goBackFromHighScore.className = "button";
-goBackFromHighScore.id = "submitButton";
+goBackFromHighScore.className = "goBackButton";
 
 var clearHighScoreButton = document.createElement("button");
 clearHighScoreButton.textContent = "Clear high scores";
 clearHighScoreButton.className = "button";
-clearHighScoreButton.id = "submitButton";
 
 var answerDisplay = document.createElement("h3");
+
+var list = document.createElement("ul");
+list.className = "highScoreTable";
+
+var j = 1;
 
 //High Score Cells
 var highScoreDisplay = document.createElement("h4");
@@ -121,7 +124,6 @@ submitHighScore.addEventListener("click", function () {
 
 clearHighScoreButton.addEventListener("click", function() {
     clearHighScores();
-    loadHighScoreTable();
 });
 
 goBackFromHighScore.addEventListener("click", function() {
@@ -260,28 +262,37 @@ function clearHomeScreen() {
 }
 
 
+
 function loadHighScoreTable() {
     headerQuiz.textContent = "High Scores"
     headerQuiz.style.display = "";
+    list.style.display = "";
+    timerEl.textContent = ""
+    viewHighScoreEl.textContent = ""
+
+    console.log(highScores);
+    
+    //remove all li from the list
+   // if (highScores.length > 0) {
+
+        while(list.firstChild) list.removeChild(list.firstChild);
+   // }
+
+    //sort the scores by highest
+    highScores.sort((a,b) => b.score - a.score);
 
     //Create a list with all the scores
-    var list = document.createElement("ul");
-    list.className = "highScoreTable";
-    var j = 1;
-
     for (var i in highScores) {
 
-        var anchor = document.createElement("a");
-        anchor.innerText = j + ". " + highScores[i].name + " - " + highScores[i].score;
-
         var elem = document.createElement("li");
-        elem.appendChild(anchor);
+        elem.textContent = j + ". " + highScores[i].name + " - " + highScores[i].score;
+
         list.appendChild(elem);
 
         if (i % 2) {
-            anchor.className = "evenRow"
+            elem.className = "evenRow"
         } else {
-            anchor.className = "oddRow"
+            elem.className = "oddRow"
         }
         j++;
         body.appendChild(list);
@@ -298,6 +309,7 @@ function loadHighScoreTable() {
 //Clear High Scores
 function clearHighScores() {
     localStorage.clear();
+    while(list.firstChild) list.removeChild(list.firstChild);
 }
 
 //Go Back
@@ -306,11 +318,14 @@ function goBackHome() {
     goBackFromHighScore.style.display = "none";
     clearHighScoreButton.style.display = "none";
     headerQuiz.style.display = "none";
+    list.style.display = "none"
 
     //bring back Home Page
     directionsEl.style.display = ""
     startButtonEl.style.display = ""
     headerEl.textContent = "Coding Quiz Challenge";
+    viewHighScoreEl.textContent = "View High Score";
+    timerEl.textContent = "Timer: 0"
 } 
 
 //Save New Score to the Table

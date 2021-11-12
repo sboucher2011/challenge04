@@ -108,18 +108,37 @@ h3 {
 .oddRow {
     background-color: green;
     height: 40px;
-
-    padding-top: 4px;
-    padding-bottom: 4px;
+    width: 400px;
+    margin: 0;
+    padding-top: 10px;
+    padding-left: 6px;
 }
 
 .evenRow {
     background-color: lightgreen;
-
-    padding-top: 4px;
-    padding-bottom: 4px;
+    width: 400px;
+    height: 40px;
+    margin: 0;
+    padding-top: 10px;
+    padding-left: 6px;
 }
 
  .highScoreTable {
     list-style: none;
+    margin-left: 27%;
+}
+
+.goBackButton {
+    margin-left: 30%;
+    margin-right: 15px;
+    background-color: var(--primary);
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    display: inline-block;
+}
+
+.highScoreTable {
+    margin-top: 0px;
 }
