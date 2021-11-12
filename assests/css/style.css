@@ -105,23 +105,21 @@ h3 {
     margin-top: 0px;
 }
 
-
 .oddRow {
     background-color: green;
     height: 40px;
-    padding-right: 400px;
+
     padding-top: 4px;
     padding-bottom: 4px;
 }
 
 .evenRow {
     background-color: lightgreen;
-    padding-right: 400px;
+
     padding-top: 4px;
     padding-bottom: 4px;
 }
 
-ul .highScoreTable {
-    text-decoration: none;
-    padding-right: 400px;
+ .highScoreTable {
+    list-style: none;
 }
