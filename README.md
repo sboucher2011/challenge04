@@ -6,11 +6,11 @@ The purpose of this website is to test the users knowldege of JavaScript!  Take 
 This website was challenge 04 of Winter 2021 UCF's Full Stack boot camp.  The purpose of this assigment was to use JavaScript to dynamically create a site.  The code also plays sounds, has a timer, and uses local storage.
 
 ## Website Preview
-![alt text](https://github.com/sboucher2011/challenge04/blob/main/assests/images/readme.png)
+![alt text](https://github.com/sboucher2011/challenge04/blob/main/assests/images/readme_startmenu.png)
 
-![alt text](https://github.com/sboucher2011/challenge04/blob/main/assests/images/readme2.png)
+![alt text](https://github.com/sboucher2011/challenge04/blob/main/assests/images/readme_quiz.png)
 
-![alt text](https://github.com/sboucher2011/challenge04/blob/main/assests/images/readme3.png)
+![alt text](https://github.com/sboucher2011/challenge04/blob/main/assests/images/readme_highscore.png)
 
 ## Built With
 * HTML
